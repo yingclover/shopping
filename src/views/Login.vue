@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<img class="headerImg" src="../assets/6.jpg" />
+		<img
+			class="headerImg"
+			src="https://github.com/yingclover/img-source/raw/master/shopping-img/6.a8cea14f.jpg"
+		/>
 		<cube-form :model="model" :schema="schema" @submit="submitHandler"></cube-form>
 	</div>
 </template>

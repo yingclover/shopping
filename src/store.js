@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {
+  join
+} from 'path';
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+let store = new Vuex.Store({
   state: {
     token: '',
-    carArr: [] //存储购物车物品数组
+    carArr: JSON.parse(localStorage.getItem('carArr')) || [] //存储购物车物品数组
   },
   mutations: {
     //设置vuex的token
@@ -23,6 +26,23 @@ export default new Vuex.Store({
           count: 1
         })
       }
+    },
+    //购物车数量增加
+    carAdd(state, index) {
+      state.carArr[index].count++
+    },
+    //购物车数量减少
+    carRemove(state, index) {
+      if (state.carArr[index].count > 1) {
+        state.carArr[index].count--
+      } else {
+        if (window.confirm('确定从购物车移除皮肤？')) {
+          state.carArr.splice(index, 1)
+        }
+      }
+    },
+    carClear(state) {
+      state.carArr = []
     }
   },
   actions: {
@@ -39,3 +59,9 @@ export default new Vuex.Store({
     }
   }
 })
+//每次调用mutations的时候，都会进入这个方法，然后可以在这里做一些处理,保证浏览器刷新后vuex数据不会丢失，保证数据持久化
+store.subscribe((mutations, state) => {
+  localStorage.setItem('carArr', JSON.stringify(state.carArr))
+})
+
+export default store

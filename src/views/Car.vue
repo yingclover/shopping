@@ -8,8 +8,8 @@
 				<i class="cubeic-add" @click="addSkin(index)"></i>
 			</div>
 		</div>
-		<cube-button style="margin:10px 0;">下单</cube-button>
-		<cube-button>清空购物车</cube-button>
+		<cube-button>下单</cube-button>
+		<cube-button @click="clearCar">清空购物车</cube-button>
 	</div>
 </template>
 
@@ -28,9 +28,17 @@ export default {
 	},
 	methods: {
 		//减少商品
-		removeSkin(index) {},
+		removeSkin(index) {
+			this.$store.commit('carRemove', index)
+		},
 		//增加商品
-		addSkin(index) {}
+		addSkin(index) {
+			this.$store.commit('carAdd', index)
+		},
+		//清空购物车
+		clearCar() {
+			this.$store.commit('carClear')
+		}
 	}
 }
 </script>
@@ -45,4 +53,9 @@ export default {
 
 	i
 		font-size 18px
+
+button
+	width 80%
+	margin-left 10%
+	margin-top 10px
 </style>
