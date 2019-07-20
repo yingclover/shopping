@@ -49,11 +49,17 @@ export default new Router({
         {
           path: 'car',
           name: 'car',
+          meta: {
+            requireAuth: true, //当有该字段时，该路由需要登录权限
+          },
           component: () => import('./views/Car.vue')
         },
         {
           path: 'mine',
           name: 'mine',
+          meta: {
+            requireAuth: true, //当有该字段时，该路由需要登录权限
+          },
           component: () => import('./views/Mine.vue')
         }
       ]

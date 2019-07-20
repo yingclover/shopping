@@ -10,10 +10,12 @@
 			@change="changeHandler"
 			class="botnav"
 		></cube-tab-bar>
+		<span class="total-count">{{countSum}}</span>
 	</div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
 	data() {
 		return {
@@ -69,28 +71,49 @@ export default {
 					break
 			}
 		}
+	},
+	computed: {
+		...mapGetters({
+			countSum: 'countSum'
+		})
+	},
+	created() {
+		switch (this.$route.path) {
+			case '/nav/index':
+				this.selectedLabelDefault = '首页'
+				break
+			case '/nav/list':
+				this.selectedLabelDefault = '分类'
+				break
+			case '/nav/search':
+				this.selectedLabelDefault = '搜索'
+				break
+			case '/nav/car':
+				this.selectedLabelDefault = '购物车'
+				break
+			case '/nav/mine':
+				this.selectedLabelDefault = '我的'
+				break
+		}
 	}
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .cube-tab-bar.botnav
 	position fixed
 	bottom 0
 	left 0
 	z-index 1000
 	width 100%
-	background #fff
+	background #f8f8f8
 
 	.cube-tab div
 		font-size 16px
 		padding-top 3px
 
-	.cube-tab_active .botnav
-		color red
-
 	i
-		font-size 15px
+		font-size 20px
 
 .router
 	position absolute
@@ -106,6 +129,17 @@ export default {
 	opacity 0
 	-webkit-transform translate(-100%, 0)
 	transform translate(-100%, 0)
+
+.total-count
+	position fixed
+	bottom 33px
+	right 23%
+	z-index 1001
+	width 18px
+	height 18px
+	line-height 18px
+	border-radius 50%
+	font-size 14px
+	background red
+	color #fff
 </style>
-
-
