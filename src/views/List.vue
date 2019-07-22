@@ -129,10 +129,8 @@ export default {
 	},
 	mounted() {
 		//设置滚动盒子的高度
-		// const leftpanels = document.querySelector('.left-panels')
 		const rightpanels = document.querySelector('.right-panels')
 		const bodyheight = document.documentElement.clientHeight
-		// leftpanels.style.height = bodyheight - 57 + 'px'
 		rightpanels.style.height = bodyheight - 58 + 'px'
 	}
 }

@@ -9,7 +9,7 @@ import setaxios from './setaxios';
 
 Vue.config.productionTip = false
 setaxios()
-Vue.prototype.$http = axios //为了避免用的时候都要引用
+Vue.prototype.$http = axios //在全局可使用axios，this.$http.get(url)
 
 //路由守卫
 router.beforeEach((to, from, next) => {
