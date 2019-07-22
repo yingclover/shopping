@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<img class="headerImg" src="../assets/6.jpg" />
+		<img
+			class="headerImg"
+			src="https://github.com/yingclover/img-source/raw/master/shopping-img/login.jpg"
+		/>
 		<cube-form :model="model" :schema="schema" @submit="submitHandler"></cube-form>
 	</div>
 </template>
@@ -83,7 +86,7 @@ export default {
 
 <style lang="stylus" scoped>
 .headerImg
-	height: 200px
-	width: 100%
+	height 200px
+	width 100%
 </style>
 

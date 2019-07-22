@@ -23,7 +23,10 @@ let store = new Vuex.Store({
       } else {
         state.carArr.push({
           title: tag.label,
-          count: 1
+          count: 1,
+          src: tag.image,
+          price: tag.price,
+          checked: false
         })
       }
     },

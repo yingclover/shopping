@@ -46,12 +46,15 @@ export default {
 	async created() {
 		try {
 			//获取轮播图数据
-			const items = await this.$http.get('/api/banner')
-			this.items = items.data
-			console.log(items)
+			const items = await this.$http.get(
+				'https://easy-mock.com/mock/5d316b99ebb16f7ba46c3580/shop/api/banner'
+			)
+			this.items = items.data.banner
 			//获取滚动数据
-			const lists = await this.$http.get('/api/rollinglist')
-			this.lists = lists.data
+			const lists = await this.$http.get(
+				'https://easy-mock.com/mock/5d316b99ebb16f7ba46c3580/shop/api/rollingList'
+			)
+			this.lists = lists.data.rollingList
 		} catch (err) {
 			console.log(err)
 		}
@@ -63,22 +66,26 @@ export default {
 #index
 	a
 		.banner
-			display: block
-			width: 100%
-			height: 175px
+			display block
+			width 100%
+			height 175px
+
 	.ul-list
-		display: flex
-		flex-wrap: wrap
+		display flex
+		flex-wrap wrap
+
 	.li-list
-		width: 20%
-		justify-content: center
+		width 20%
+		justify-content center
+
 		img
-			width: 35px
-			height: 35px
-			border-radius: 50%
-			padding: 5px 0
+			width 35px
+			height 35px
+			border-radius 50%
+			padding 5px 0
+
 		p
-			font-size: 14px
-			padding-bottom: 10px
+			font-size 14px
+			padding-bottom 10px
 </style>
 

@@ -1,12 +1,20 @@
 <template>
 	<div>
 		<div class="goods" v-for="(item,index) in carList" :key="index">
-			{{item.title}}
+			<cube-checkbox v-model="item.checked">
+				<img :src="item.src" class="car-img" />
+			</cube-checkbox>
+			<span>{{item.title}}</span>
+			<span class="price">￥{{item.price*item.count}}</span>
 			<div class="goods-count">
 				<i class="cubeic-remove" @click="removeSkin(index)"></i>
 				<span>{{item.count}}</span>
 				<i class="cubeic-add" @click="addSkin(index)"></i>
 			</div>
+		</div>
+		<div class="total-price" @click="chooseAll">
+			<cube-checkbox v-model="checkAll">全选</cube-checkbox>
+			<span>合计:￥{{totalPrice}}</span>
 		</div>
 		<cube-button>下单</cube-button>
 		<cube-button @click="clearCar">清空购物车</cube-button>
@@ -18,13 +26,44 @@ import { mapState } from 'vuex' //与下面计算属性有关，有了才可以�
 export default {
 	data() {
 		return {
-			// carList: []
+			checkAll: false
 		}
 	},
+	// watch: {
+	// 	checkAll: {
+	// 		handler(val) {
+	// 			if (val) {
+	// 				this.carList.forEach(v => {
+	// 					v.checked = true
+	// 				})
+	// 			} else {
+	// 				this.carList.forEach(v => {
+	// 					v.checked = false
+	// 				})
+	// 			}
+	// 		}
+	// 	}
+	// },
 	computed: {
 		...mapState({
 			carList: state => state.carArr
-		})
+		}),
+		totalPrice() {
+			let total = 0
+			let i = 0
+			this.carList.forEach(v => {
+				if (v.checked) {
+					total += v.price * v.count
+					i++
+				}
+			})
+			if (this.carList.length == i) {
+				this.checkAll = true
+			} else {
+				this.checkAll = false
+			}
+			return total
+		}
 	},
 	methods: {
 		//减少商品
@@ -38,6 +77,17 @@ export default {
 		//清空购物车
 		clearCar() {
 			this.$store.commit('carClear')
+		},
+		chooseAll() {
+			if (this.checkAll == true) {
+				this.carList.forEach(v => {
+					v.checked = false
+				})
+			} else {
+				this.carList.forEach(v => {
+					v.checked = true
+				})
+			}
 		}
 	}
 }
@@ -45,14 +95,45 @@ export default {
 
 <style lang="stylus" scoped>
 .goods
-	padding 10px
-	text-align left
+	display flex
+	align-items center
+	margin 10px
+	border-radius 8px
+	height 50px
+	font-size 16px
+	background-color #fafafa
+
+	.car-img
+		width 40px
+		height 40px
+		margin-top 5px
+
+	span
+		width 45%
+		text-align left
+
+	.price
+		color #bf393a
+		width 13%
 
 	.goods-count
-		float right
+		i
+			font-size 18px
 
-	i
-		font-size 18px
+.total-price
+	display flex
+	align-items center
+	margin 10px
+	// border-top 1px solid #eee
+	height 50px
+	font-size 16px
+
+	.cube-checkbox
+		width 70%
+
+	span
+		color #bf393a
+		font-size 14px
 
 button
 	width 80%

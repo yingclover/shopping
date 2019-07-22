@@ -48,7 +48,6 @@ export default {
 	methods: {
 		clickHandler(label) {
 			// if you clicked home tab, then print 'Home'
-			console.log(label)
 		},
 		//点击与自身不同的其他导航
 		changeHandler(label) {
@@ -106,7 +105,8 @@ export default {
 	left 0
 	z-index 1000
 	width 100%
-	background #f8f8f8
+	background #fff
+	border-top 1px solid #fafafa
 
 	.cube-tab div
 		font-size 16px

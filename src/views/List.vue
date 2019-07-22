@@ -17,10 +17,15 @@
 			<ul>
 				<li v-for="(tag,index) in tags" :key="index">
 					<img :src="tag.image" alt />
-					<p>
-						{{tag.label}}
-						<i class="cubeic-add" @click="addToCar($event,tag)"></i>
-					</p>
+					<i class="cubeic-add" @click="addToCar($event,tag)"></i>
+					<div>
+						<p style="color:#bf393a">￥{{tag.price}}</p>
+						<p style="color:#1e233b">
+							{{tag.label.split(' ')[0]}}
+							<!-- <i class="cubeic-add" @click="addToCar($event,tag)"></i> -->
+						</p>
+						<p style="margin-top:5px;color:#bf393a">{{tag.label.split(' ')[1]}}</p>
+					</div>
 				</li>
 			</ul>
 		</cube-scroll>
@@ -45,50 +50,7 @@ export default {
 				el: ''
 			},
 			tags: [],
-			tabslabel: [
-				{
-					label: '全',
-					imgUrl:
-						'https://moba.res.netease.com/pc/gw/20190114103430/img/ssl/ssl_1h_013cae3.png',
-					active: true
-				},
-				{
-					label: '巫',
-					imgUrl:
-						'https://moba.res.netease.com/pc/gw/20190114103430/img/ssl/ssl_2h_e6fc8b5.png',
-					active: false
-				},
-				{
-					label: '侍',
-					imgUrl:
-						'https://moba.res.netease.com/pc/gw/20190114103430/img/ssl/ssl_3h_5540c58.png',
-					active: false
-				},
-				{
-					label: '忍',
-					imgUrl:
-						'https://moba.res.netease.com/pc/gw/20190114103430/img/ssl/ssl_4h_9c81992.png',
-					active: false
-				},
-				{
-					label: '射',
-					imgUrl:
-						'https://moba.res.netease.com/pc/gw/20190114103430/img/ssl/ssl_5h_822f6a3.png',
-					active: false
-				},
-				{
-					label: '守',
-					imgUrl:
-						'https://moba.res.netease.com/pc/gw/20190114103430/img/ssl/ssl_6h_0b0a100.png',
-					active: false
-				},
-				{
-					label: '祝',
-					imgUrl:
-						'https://moba.res.netease.com/pc/gw/20190114103430/img/ssl/ssl_7h_acaf9dd.png',
-					active: false
-				}
-			]
+			tabslabel: []
 		}
 	},
 	methods: {
@@ -105,10 +67,13 @@ export default {
 		},
 		//获取分类
 		async getClassify(index) {
-			const result = await this.$http.get('/api/classify', {
-				params: { type: index }
-			})
-			this.tags = result.data
+			const result = await this.$http.get(
+				'https://easy-mock.com/mock/5d316b99ebb16f7ba46c3580/shop/api/getClassifyItems',
+				{
+					params: { type: index }
+				}
+			)
+			this.tags = result.data.items
 		},
 		//添加商品至购物车
 		addToCar(e, tag) {
@@ -122,9 +87,9 @@ export default {
 			//让小球移动到点击的位置
 			//获取点击位置
 			const dom = this.ball.el
-			console.log(dom)
+			// console.log(dom)
 			const rect = dom.getBoundingClientRect() //获取点击的dom的位置
-			console.log(rect)
+			// console.log(rect)
 			const x = rect.left - window.innerWidth * 0.7
 			const y = -(window.innerHeight - rect.top)
 			console.log(x, y)
@@ -147,9 +112,18 @@ export default {
 			//结束隐藏小球
 			this.ball.show = false
 			el.style.display = 'none'
+		},
+		async getTabList() {
+			//获取分类项及图标
+			const res = await this.$http.get(
+				'https://easy-mock.com/mock/5d316b99ebb16f7ba46c3580/shop/api/classifyList'
+			)
+			this.tabslabel = res.data.tabs
 		}
 	},
 	created() {
+		//获取分类项
+		this.getTabList()
 		//获取默认的分类数据
 		this.getClassify(0)
 	},
@@ -215,6 +189,7 @@ export default {
 
 			li
 				width 50%
+				margin-top 10px
 				justify-content center
 				align-items center
 				font-size 15px
