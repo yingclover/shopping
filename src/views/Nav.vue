@@ -1,8 +1,11 @@
 <template>
 	<div>
 		<transition :name="transitionName">
-			<router-view class="router"></router-view>
+			<div id="router">
+				<router-view></router-view>
+			</div>
 		</transition>
+
 		<cube-tab-bar
 			v-model="selectedLabelDefault"
 			:data="tabs"
@@ -94,6 +97,11 @@ export default {
 				this.selectedLabelDefault = '我的'
 				break
 		}
+	},
+	mounted() {
+		const h = document.documentElement.clientHeight
+		const route = document.getElementById('router')
+		route.style.height = h - 58 + 'px'
 	}
 }
 </script>
@@ -116,9 +124,9 @@ export default {
 		font-size 20px
 
 .router
-	position absolute
 	width 100%
 	transition all 0.8s ease
+	overflow auto
 
 .silde-left-enter, .slide-right-leave-active
 	opacity 0

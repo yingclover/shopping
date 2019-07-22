@@ -133,7 +133,7 @@ export default {
 		const rightpanels = document.querySelector('.right-panels')
 		const bodyheight = document.documentElement.clientHeight
 		// leftpanels.style.height = bodyheight - 57 + 'px'
-		rightpanels.style.height = bodyheight - 57 + 'px'
+		rightpanels.style.height = bodyheight - 58 + 'px'
 	}
 }
 </script>

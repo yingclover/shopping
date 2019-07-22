@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="car-body">
 		<div class="goods" v-for="(item,index) in carList" :key="index">
 			<cube-checkbox v-model="item.checked">
 				<img :src="item.src" class="car-img" />
@@ -29,21 +29,6 @@ export default {
 			checkAll: false
 		}
 	},
-	// watch: {
-	// 	checkAll: {
-	// 		handler(val) {
-	// 			if (val) {
-	// 				this.carList.forEach(v => {
-	// 					v.checked = true
-	// 				})
-	// 			} else {
-	// 				this.carList.forEach(v => {
-	// 					v.checked = false
-	// 				})
-	// 			}
-	// 		}
-	// 	}
-	// },
 	computed: {
 		...mapState({
 			carList: state => state.carArr
@@ -89,11 +74,19 @@ export default {
 				})
 			}
 		}
+	},
+	mounted() {
+		const car = document.querySelector('.car-body')
+		const bodyheight = document.documentElement.clientHeight
+		car.style.height = bodyheight - 58 + 'px'
 	}
 }
 </script>
 
 <style lang="stylus" scoped>
+.car-body
+	overflow auto
+
 .goods
 	display flex
 	align-items center
@@ -124,12 +117,11 @@ export default {
 	display flex
 	align-items center
 	margin 10px
-	// border-top 1px solid #eee
 	height 50px
 	font-size 16px
 
 	.cube-checkbox
-		width 70%
+		width 68%
 
 	span
 		color #bf393a
