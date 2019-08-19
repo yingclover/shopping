@@ -8,7 +8,7 @@
 					:class="list.active?'active':''"
 					:key="index"
 				>
-					<img :src="list.imgUrl" />
+					<span class="tab" index></span>
 					<span>{{list.label}}</span>
 				</li>
 			</ul>
@@ -166,39 +166,65 @@ export default {
 			background #1e233b
 			font-size 14px
 
-		.active
-			background #bf393a
-			color #fff
-
-		img
+		.tab
+			display inline-block
+			height 30px
+			width 30px
 			position absolute
 			top 15px
 			left 15px
+			background url('../assets/css_sprites.png') no-repeat
 
-		span
-			margin-left 15px
+		li:first-child>span
+			background-position -10px -283px
 
-	.right-panels
-		width 70%
+		li:nth-child(2)>span
+			background-position -10px -190px
 
-		ul
-			display flex
-			flex-wrap wrap
+		li:nth-child(3)>span
+			background-position -10px -10px
 
-			li
-				width 50%
-				margin-top 10px
-				justify-content center
-				align-items center
-				font-size 15px
+		li:nth-child(4)>span
+			background-position -10px -55px
 
-				img
-					width 80px
-					height 80px
+		li:nth-child(5)>span
+			background-position -10px -236px
 
-				.cubeic-add
-					font-size 18px
-					cursor pointer
+		li:nth-child(6)>span
+			background-position -10px -100px
+
+		li:nth-child(7)>span
+			background-position -10px -145px
+
+			span:last-child
+				margin-left 15px
+
+		.active
+			background #bf393a
+
+	color #fff
+
+.right-panels
+	width 70%
+
+	ul
+		display flex
+		flex-wrap wrap
+
+		li
+			width 50%
+			margin-top 10px
+			justify-content center
+			align-items center
+			font-size 15px
+
+			img
+				width 80px
+				height 80px
+
+			.cubeic-add
+				font-size 18px
+				cursor pointer
 </style>
 
 
