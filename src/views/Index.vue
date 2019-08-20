@@ -7,7 +7,7 @@
 				@click.native="clickHandler(item, index)"
 			>
 				<a :href="item.url">
-					<img class="banner" :src="item.image" />
+					<img class="banner" v-lazy="item.image" />
 				</a>
 			</cube-slide-item>
 		</cube-slide>
@@ -17,7 +17,7 @@
 				<ul class="ul-list">
 					<li class="li-list" v-for="(item,index1) in list" :key="index1">
 						<a :href="item.url">
-							<img :src="item.image" />
+							<img v-lazy="item.image" />
 							<p>{{item.label}}</p>
 						</a>
 					</li>

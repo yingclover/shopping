@@ -16,7 +16,7 @@
 		<cube-scroll class="right-panels">
 			<ul>
 				<li v-for="(tag,index) in tags" :key="index">
-					<img :src="tag.image" alt />
+					<img v-lazy="tag.image" alt />
 					<i class="cubeic-add" @click="addToCar($event,tag)"></i>
 					<div>
 						<p style="color:#bf393a">￥{{tag.price}}</p>

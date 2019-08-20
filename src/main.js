@@ -6,8 +6,10 @@ import store from './store'
 import 'amfe-flexible'
 import axios from 'axios'
 import setaxios from './setaxios';
+import VueLazyload from 'vue-lazyload'
 
 Vue.config.productionTip = false
+Vue.use(VueLazyload)
 setaxios()
 Vue.prototype.$http = axios //在全局可使用axios，this.$http.get(url)
 
