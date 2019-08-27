@@ -2,7 +2,7 @@
 	<div class="car-body">
 		<div class="goods" v-for="(item,index) in carList" :key="index">
 			<cube-checkbox v-model="item.checked">
-				<img :src="item.src" class="car-img" />
+				<img v-lazy="item.src" class="car-img" />
 			</cube-checkbox>
 			<span>{{item.title}}</span>
 			<span class="price">￥{{item.price*item.count}}</span>

@@ -20,10 +20,7 @@
 					<i class="cubeic-add" @click="addToCar($event,tag)"></i>
 					<div>
 						<p style="color:#bf393a">￥{{tag.price}}</p>
-						<p style="color:#1e233b">
-							{{tag.label.split(' ')[0]}}
-							<!-- <i class="cubeic-add" @click="addToCar($event,tag)"></i> -->
-						</p>
+						<p style="color:#1e233b">{{tag.label.split(' ')[0]}}</p>
 						<p style="margin-top:5px;color:#bf393a">{{tag.label.split(' ')[1]}}</p>
 					</div>
 				</li>
@@ -167,13 +164,13 @@ export default {
 			font-size 14px
 
 		.tab
-			display inline-block
-			height 30px
-			width 30px
 			position absolute
 			top 15px
 			left 15px
-			background url('../assets/css_sprites.png') no-repeat
+			display inline-block
+			height 30px
+			width 30px
+			background url('https://github.com/yingclover/img-source/raw/master/shopping-img/css_sprites.png') no-repeat
 
 		li:first-child>span
 			background-position -10px -283px
@@ -225,6 +222,7 @@ export default {
 			.cubeic-add
 				font-size 18px
 				cursor pointer
+				color #bf393a
 </style>
 
 

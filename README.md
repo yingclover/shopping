@@ -170,6 +170,12 @@ npm run serve
    box.style.height = bodyheight - 58 + 'px'//58是底部tab栏的高度
    ```
 
+4. 雪碧图，图片懒加载
+
+5. 加入购物车动画效果实现
+
+   ![gif](https://github.com/yingclover/img-source/raw/master/shopping-img/carAnimation.gif)
+
 ### 项目截图
 
 登录页面：
